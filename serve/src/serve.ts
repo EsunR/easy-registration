@@ -8,6 +8,7 @@ import dbGenerator from "./db/db_generator"
 import KoaStatic from "koa-static"
 import path from "path"
 import KoaLogger from "koa-logger"
+import compress from "koa-compress"
 
 const app: Koa = new Koa()
 const router: Router = new Router()
@@ -20,6 +21,9 @@ app.use(KoaLogger())
 
 // 错误处理
 app.use(errorHandler())
+
+// Gzip
+app.use(compress({ threshold: 2048 }))
 
 // 静态文件服务
 app.use(
