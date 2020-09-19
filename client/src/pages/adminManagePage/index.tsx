@@ -1,5 +1,6 @@
 import { request } from '@/utils/request';
-import { Descriptions } from 'antd';
+import { Button, Descriptions, Modal, notification } from 'antd';
+import Search from './components/Search';
 import moment from 'moment';
 import React, { useEffect, useState } from 'react';
 import { getLabelByValue } from './controller';
@@ -16,6 +17,22 @@ const index = () => {
     });
   };
 
+  const handleDel = async (id: any) => {
+    const res = await request.delete(`/api/information/${id}`);
+    if (res && res.data.success === true) {
+      getData();
+      notification.success({ message: '删除成功' });
+    }
+  };
+
+  const handleSearch = (values: any) => {
+    console.log(values);
+  };
+
+  const handleRest = () => {
+    getData();
+  };
+
   useEffect(() => {
     getData();
   }, []);
@@ -23,9 +40,33 @@ const index = () => {
   return (
     <div className={styles.admin}>
       <h1 className="title">懒得写样式的管理页面</h1>
+      <Search onSearch={handleSearch} onReset={handleRest} />
       {dataList.map(item => (
         <div className="card" key={item?.id}>
-          <Descriptions layout="vertical" title={`序号：${item?.id}`} bordered>
+          <Descriptions
+            layout="vertical"
+            title={
+              <div className="card-title">
+                <span>序号：{item?.id}</span>
+                <Button
+                  type="primary"
+                  danger
+                  onClick={() => {
+                    Modal.confirm({
+                      title: '提醒',
+                      content: '是否确定删除',
+                      onOk: () => {
+                        handleDel(item.id);
+                      },
+                    });
+                  }}
+                >
+                  删除
+                </Button>
+              </div>
+            }
+            bordered
+          >
             <Descriptions.Item label="姓名">{item?.name}</Descriptions.Item>
             <Descriptions.Item label="性别">
               {getLabelByValue(Sex, item?.sex)}
@@ -50,10 +91,10 @@ const index = () => {
             <Descriptions.Item span={12} label="是否有经验">
               {item?.has_exp}
             </Descriptions.Item>
-            <Descriptions.Item span={12} label="自我介绍">
+            <Descriptions.Item style={{ width: '50%' }} label="自我介绍">
               {item?.self_introduction}
             </Descriptions.Item>
-            <Descriptions.Item span={12} label="照片">
+            <Descriptions.Item style={{ width: '50%' }} label="照片">
               <img
                 style={{ maxHeight: '200px' }}
                 src={`http://esunr.xyz:9092/upload/${item?.image}`}

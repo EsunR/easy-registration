@@ -11,9 +11,6 @@ export default () => {
         <li>
           <Link to="/welcome">欢迎页面</Link>
         </li>
-        <li>
-          <Link to="/admin">管理页面</Link>
-        </li>
       </ul>
     </div>
   );

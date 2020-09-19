@@ -23,6 +23,7 @@
     "@ant-design/pro-layout": "^5.0.12",
     "@umijs/preset-react": "1.x",
     "@umijs/test": "^3.2.7",
+    "animate.css": "^4.1.1",
     "antd": "^4.6.4",
     "axios": "^0.20.0",
     "hammerjs": "^2.0.8",

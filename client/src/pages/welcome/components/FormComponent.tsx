@@ -208,7 +208,7 @@ const FormComponent: React.FC<{
           rules={[{ required: true }]}
         >
           <Radio.Group>
-            <Radio value={1}>编采部</Radio>
+            <Radio value={1}>采编部</Radio>
             <Radio value={2}>运营部</Radio>
             <Radio value={3}>技术部</Radio>
           </Radio.Group>

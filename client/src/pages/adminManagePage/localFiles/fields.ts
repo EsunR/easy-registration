@@ -16,7 +16,7 @@ export const Sex: Field[] = [
 
 export const WantToJoin: Field[] = [
   {
-    label: '编采部',
+    label: '采编部',
     value: 1,
   },
   {

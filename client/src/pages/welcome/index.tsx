@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import styles from './index.less';
 import background from '@/resource/background.jpg';
 import FormComponent from './components/FormComponent';
-import { Button } from 'antd';
+import { UpOutlined } from '@ant-design/icons';
+import 'animate.css';
 
 const index: React.FC<any> = () => {
   const [show, setShow] = useState<boolean>(false);
@@ -25,15 +26,17 @@ const index: React.FC<any> = () => {
 
   return (
     <div className={styles.welcomePage}>
-      <div className="top-content-wrapper">
+      <div className="top-content-wrapper animate__animated animate__fadeInUp">
         <img
           width="100%"
           height="100%"
           src={background}
           className="background"
         />
-        <div className="left-top">SignUp</div>
-        <div className="bottom-info">
+        <div className="left-top animate__animated animate__fadeInUp">
+          SignUp
+        </div>
+        <div className="bottom-info animate__animated animate__fadeInUp">
           <h1>
             大数据与计算机学院
             <br />
@@ -44,15 +47,15 @@ const index: React.FC<any> = () => {
           </h2>
         </div>
 
-        <Button
-          className="start-btn"
-          size="large"
+        <div
+          className="start-btn animate-float"
           onClick={() => {
             setShow(true);
           }}
         >
-          点击报名
-        </Button>
+          <span>点击进入报名</span>
+          <UpOutlined />
+        </div>
       </div>
 
       <FormComponent show={show} />
